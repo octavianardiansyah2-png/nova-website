@@ -1,66 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="NOVA — website profesional modern.">
-<title>NOVA — Digital Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSpace — File & Tugas</title>
+  <meta name="description" content="Website pribadi untuk menyimpan file, foto, dan mengirim tugas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<header class="nav">
-  <a href="#home" class="logo">◆ NOVA</a>
-  <button class="menu" aria-label="Menu">☰</button>
-  <nav>
-    <a href="#home">Home</a><a href="#about">Tentang</a><a href="#services">Layanan</a>
-    <a href="#projects">Project</a><a href="#contact" class="pill">Hubungi</a>
-  </nav>
-</header>
-
-<main>
-<section id="home" class="hero">
-  <div>
-    <p class="eyebrow">DIGITAL • CREATIVE • MODERN</p>
-    <h1>Membangun sesuatu yang <span>terlihat berbeda.</span></h1>
-    <p class="lead">Website profesional untuk personal brand, bisnis, portfolio, dan project digital dengan tampilan modern, responsif, dan elegan.</p>
-    <div class="actions"><a class="btn primary" href="#projects">Lihat Project →</a><a class="btn" href="#contact">Mulai Sekarang</a></div>
-    <div class="stats"><div><b>24+</b><small>Project</small></div><div><b>98%</b><small>Kepuasan</small></div><div><b>24/7</b><small>Online</small></div></div>
+  <div id="welcome" class="welcome-overlay">
+    <div class="welcome-card">
+      <div class="logo-mark">N</div>
+      <p class="eyebrow">PERSONAL WORKSPACE</p>
+      <h1>Welcome to NovaSpace</h1>
+      <p>Satu tempat untuk menyimpan file, foto, dan mengirim tugas dengan tampilan yang rapi.</p>
+      <button class="primary-btn" id="enterBtn">Masuk ke Website</button>
+    </div>
   </div>
-  <div class="visual"><div class="orb"></div><div class="float one"><b>Creative</b><small>Ideas that connect</small></div><div class="float two"><b>Digital</b><small>Built for the future</small></div><div class="center">✦<strong>NOVA</strong><small>DIGITAL STUDIO</small></div></div>
-</section>
 
-<section id="about" class="section split">
-  <div><p class="eyebrow">TENTANG KAMI</p><h2>Simple di awal.<br><span>Berimpact di akhir.</span></h2></div>
-  <p class="section-text">Kami menggabungkan desain bersih, pengalaman pengguna yang nyaman, dan teknologi web modern untuk membuat kehadiran digital yang terasa profesional.</p>
-</section>
+  <header class="topbar">
+    <a class="brand" href="#home" data-page="home"><span class="brand-dot">N</span><span>NovaSpace</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+    <nav id="nav">
+      <a href="#home" data-page="home">Home</a>
+      <a href="#files" data-page="files">File</a>
+      <a href="#photos" data-page="photos">Foto</a>
+      <a href="#submit" data-page="submit">Kirim Tugas</a>
+    </nav>
+  </header>
 
-<section id="services" class="section">
-  <div class="heading"><div><p class="eyebrow">LAYANAN</p><h2>Apa yang kami buat?</h2></div><p>Solusi digital yang dirancang sesuai kebutuhan.</p></div>
-  <div class="cards">
-    <article><small>01</small><h3>Web Design</h3><p>Landing page dan website modern dengan visual yang kuat.</p></article>
-    <article><small>02</small><h3>Development</h3><p>Website responsif, cepat, dan nyaman digunakan di berbagai perangkat.</p></article>
-    <article><small>03</small><h3>Branding</h3><p>Identitas visual yang konsisten dan mudah diingat.</p></article>
-  </div>
-</section>
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">MY DIGITAL WORKSPACE</p>
+          <h2>Semua tugas dan file,<br><span>lebih teratur.</span></h2>
+          <p class="hero-text">Upload dokumen atau gambar, lihat koleksi foto, dan kirim tugas melalui satu website.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#submit">Kirim Tugas</a>
+            <a class="secondary-btn" href="#files">Lihat File</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="mini-window">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div class="mini-row"><span>📄</span><div><b>Tugas Informatika</b><small>PDF • 2.4 MB</small></div></div>
+            <div class="mini-row"><span>🖼️</span><div><b>Dokumentasi</b><small>JPG • 1.8 MB</small></div></div>
+            <div class="mini-row"><span>📊</span><div><b>Presentasi</b><small>PPTX • 5.1 MB</small></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stats">
+        <div><strong id="fileCount">0</strong><span>File</span></div>
+        <div><strong id="photoCount">0</strong><span>Foto</span></div>
+        <div><strong>24/7</strong><span>Akses</span></div>
+      </div>
+      <div class="section-heading"><div><p class="eyebrow">QUICK ACCESS</p><h3>Mulai dari sini</h3></div></div>
+      <div class="cards">
+        <a class="feature-card" href="#files"><div class="icon">📁</div><h4>File Saya</h4><p>Simpan dan buka dokumen dari koleksi kamu.</p><span>Kelola file →</span></a>
+        <a class="feature-card" href="#photos"><div class="icon">🖼️</div><h4>Galeri Foto</h4><p>Upload dan tampilkan gambar dalam galeri.</p><span>Buka galeri →</span></a>
+        <a class="feature-card" href="#submit"><div class="icon">📤</div><h4>Kirim Tugas</h4><p>Kirim tugas beserta nama dan kelas.</p><span>Mulai kirim →</span></a>
+      </div>
+    </section>
 
-<section id="projects" class="section">
-  <div class="heading"><div><p class="eyebrow">PROJECT TERPILIH</p><h2>Beberapa karya.</h2></div></div>
-  <div class="projects">
-    <article class="project a"><div><small>01 / BUSINESS</small><h3>Orbit Space</h3></div></article>
-    <article class="project b"><div><small>02 / PORTFOLIO</small><h3>Mono Studio</h3></div></article>
-    <article class="project c"><div><small>03 / PRODUCT</small><h3>Future Lab</h3></div></article>
-  </div>
-</section>
+    <section id="files" class="page">
+      <div class="page-head"><div><p class="eyebrow">YOUR DOCUMENTS</p><h2>File Saya</h2><p>Upload PDF, Word, ZIP, PPT, dan file lainnya.</p></div>
+        <label class="upload-btn">＋ Upload File<input id="fileInput" type="file" multiple hidden></label>
+      </div>
+      <div id="fileMessage" class="message"></div>
+      <div id="fileList" class="file-grid"><div class="empty">Belum ada file. Upload file pertama kamu.</div></div>
+    </section>
 
-<section id="contact" class="contact">
-  <p class="eyebrow">LET'S TALK</p><h2>Punya ide?<br><span>Mari wujudkan.</span></h2>
-  <a class="btn primary" href="mailto:hello@namadomain.com">hello@namadomain.com ↗</a>
-</section>
-</main>
+    <section id="photos" class="page">
+      <div class="page-head"><div><p class="eyebrow">YOUR GALLERY</p><h2>Foto</h2><p>Simpan gambar dan lihat dalam galeri.</p></div>
+        <label class="upload-btn">＋ Upload Foto<input id="photoInput" type="file" accept="image/*" multiple hidden></label>
+      </div>
+      <div id="photoMessage" class="message"></div>
+      <div id="photoGrid" class="photo-grid"><div class="empty">Belum ada foto. Upload gambar pertama kamu.</div></div>
+    </section>
 
-<footer><span>© 2026 NOVA Digital Studio</span><span>Made with purpose.</span></footer>
-<script src="script.js"></script>
+    <section id="submit" class="page">
+      <div class="submit-layout">
+        <div class="submit-copy"><p class="eyebrow">ASSIGNMENT SUBMISSION</p><h2>Kirim Tugas</h2><p>Isi data di bawah, pilih file tugas, lalu tekan kirim. File akan disimpan di storage online yang kamu hubungkan.</p>
+          <div class="tip"><b>Format yang disarankan</b><span>PDF, DOCX, PPTX, XLSX, ZIP, JPG, PNG</span></div>
+        </div>
+        <form id="taskForm" class="form-card">
+          <label>Nama<input name="name" required placeholder="Nama lengkap"></label>
+          <label>Kelas<input name="className" required placeholder="Contoh: X TKJ 1"></label>
+          <label>Mata Pelajaran<input name="subject" required placeholder="Contoh: Informatika"></label>
+          <label>Nama Tugas<input name="title" required placeholder="Contoh: Tugas HTML"></label>
+          <label>Catatan <span>(opsional)</span><textarea name="note" rows="4" placeholder="Keterangan untuk tugas..."></textarea></label>
+          <label>File Tugas<input name="taskFile" id="taskFile" type="file" required></label>
+          <button class="primary-btn full" type="submit">📤 Kirim Tugas</button>
+          <div id="submitMessage" class="message"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer><b>NovaSpace</b><span>Personal digital workspace</span></footer>
+  <script src="script.js"></script>
 </body>
 </html>
